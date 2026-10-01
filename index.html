@@ -917,7 +917,7 @@
         // animações de scroll
         const rv = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('v'), (e.target.dataset.d || 0) * 90); rv.unobserve(e.target) } }), { threshold: .1 });
         document.querySelectorAll('.rv').forEach((el, n) => { el.dataset.d = n % 3; rv.observe(el) });
-        document.querySelectorAll('.sec').forEach(s => sp.observe(s));
+        
 
         // montar item
         let cur, sel, qty, C = [];
