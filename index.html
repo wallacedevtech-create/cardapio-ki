@@ -169,57 +169,7 @@
             border: 1px solid #f5e9d273
         }
 
-        /* BARRA FIXA */
-        .bar {
-            position: sticky;
-            top: env(safe-area-inset-top, 0px);
-            z-index: 30;
-            background: #0d0b0af2;
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid #ff78004d;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 14px
-        }
-
-        .bar>img {
-            height: 40px;
-            width: 40px;
-            object-fit: contain
-        }
-
-        .tabs {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            flex: 1;
-            scrollbar-width: none
-        }
-
-        .tabs::-webkit-scrollbar {
-            display: none
-        }
-
-        .tabs a {
-            flex: none;
-            color: #cbbfb2;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: .72rem;
-            text-transform: uppercase;
-            padding: 9px 13px;
-            border-radius: 7px;
-            border: 1px solid #ffffff1a;
-            background: #17120f;
-            transition: .2s
-        }
-
-        .tabs a.on {
-            background: var(--or);
-            border-color: var(--or);
-            color: #160d08
-        }
+ 
 
         .cartb {
             position: relative;
@@ -725,9 +675,76 @@
             font-style: normal
         }
 
+        .cart-float {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    border: 0;
+    border-radius: 50px;
+
+    padding: 14px 20px;
+
+    background: var(--ye);
+    color: #160d08;
+
+    font-weight: 900;
+    font-size: .85rem;
+
+    box-shadow: 5px 5px 0 var(--or);
+
+    cursor: pointer;
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+}
+
+.cart-float:hover {
+    transform: translateY(-3px);
+    box-shadow: 7px 7px 0 var(--or);
+}
+
+.cart-float:active {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 0 var(--or);
+}
+
+.cart-float b {
+    position: absolute;
+
+    top: -7px;
+    right: -7px;
+
+    min-width: 23px;
+    height: 23px;
+
+    padding: 0 5px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: var(--rd);
+    color: var(--cr);
+
+    font-size: .7rem;
+}
+
         @media(max-width:640px) {
             .hero {
                 background: linear-gradient(180deg, #0d0b0aee, #0d0b0a9c 60%, var(--bk)), var(--hero) 75% center/cover
+            }
+            .cart-float {
+                right: 15px;
+                bottom: 15px;
+                padding: 14px 17px;
             }
         }
 
@@ -754,11 +771,11 @@
         
     </header>
 
-    <nav class="bar" aria-label="Categorias"><img
-            src="coroa.png"  alt="">
-        <div class="tabs" id="tabs"></div>
-        <button class="cartb" id="cb" onclick="openCart()" aria-label="Abrir pedido">🛒 Pedido<b id="cc">0</b></button>
-    </nav>
+    <button class="cart-float" id="cb" onclick="openCart()" aria-label="Abrir pedido">
+    🛒
+        <span>Pedido</span>
+        <b id="cc">0</b>
+    </button>
 
     <main id="menu"></main>
     <footer><strong>Ki Hot Dog</strong>Street food premium<em>Sabor que vicia!</em></footer>
@@ -896,12 +913,10 @@
             </article>
         `;
         $('#menu').innerHTML = M.map(c => { const [a, b] = c.t.split('|'); return `<section class="sec" id="${c.k}"><span class="eb">${c.tag}</span><h2>${a}<b>${b}</b></h2><p class="sd">${c.ds}</p><div class="grid">${c.it.map(card).join('')}</div></section>` }).join('');
-        $('#tabs').innerHTML = M.map(c => `<a href="#${c.k}" data-k="${c.k}">${c.em} ${c.t.replace('|', '').replace('Macarrão de Frigideira', 'Massas').replace('Batatas KI', 'Porções')}</a>`).join('');
-
+        
         // animações de scroll
         const rv = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('v'), (e.target.dataset.d || 0) * 90); rv.unobserve(e.target) } }), { threshold: .1 });
         document.querySelectorAll('.rv').forEach((el, n) => { el.dataset.d = n % 3; rv.observe(el) });
-        const sp = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { document.querySelectorAll('.tabs a').forEach(a => { const on = a.dataset.k === e.target.id; a.classList.toggle('on', on); if (on) a.scrollIntoView({ block: 'nearest', inline: 'center' }) }) } }), { rootMargin: '-30% 0px -60% 0px' });
         document.querySelectorAll('.sec').forEach(s => sp.observe(s));
 
         // montar item
