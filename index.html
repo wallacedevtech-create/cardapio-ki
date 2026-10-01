@@ -17,7 +17,7 @@
             --cr: #f5e9d2;
             --rd: #8f2417;
             --mu: #a99d91;
-            --hero: url(/fundo\ top.png) ;
+            --hero: url(fundo\ top.png) ;
             color-scheme: dark;
             box-sizing: border-box;
             padding-top: env(safe-area-inset-top, 0px);
@@ -744,7 +744,7 @@
 <body>
     <header class="hero" id="inicio">
         <div class="hero-in">
-            <img class="logo" src="/logo.png" alt="Ki Hot Dog — Sabor que vicia!">
+            <img class="logo" src="logo.png" alt="Ki Hot Dog — Sabor que vicia!">
             <h1><span>A fome</span><span>chamou?</span></h1>
             <p>Hot dogs, porções, massas, cremes e açaí feitos do seu jeito. Escolha os ingredientes de cada item e
                 envie o pedido pelo WhatsApp.</p>
@@ -755,7 +755,7 @@
     </header>
 
     <nav class="bar" aria-label="Categorias"><img
-            src="/coroa.png"  alt="">
+            src="coroa.png"  alt="">
         <div class="tabs" id="tabs"></div>
         <button class="cartb" id="cb" onclick="openCart()" aria-label="Abrir pedido">🛒 Pedido<b id="cc">0</b></button>
     </nav>
@@ -809,8 +809,8 @@
         const M = [
             {
                 k: 'hotdog', em: '🌭', t: 'Ki |Hot Dog', tag: 'Do seu jeito!', ds: 'O clássico da casa. Tire ou ponha ingredientes e molhos como quiser.', it: [
-                    { n: 'Cachorro Quente Tradicional', d: 'Você monta do seu jeito: ingredientes e molhos à sua escolha.', p: 12, from: 1, img: '/hot_simples-removebg-preview.png', lb: 'Mais pedido', g: [g('Ingredientes', ING, { d: ING }), g('Molhos', MOL)] },
-                    { n: 'Hot Dog Especial', d: 'Uma combinação caprichada, com todos os molhos da casa.', p: 15, img: '/hot completo.png', lb: 'Especial KI', g: [g('Ingredientes', ING, { d: ING }), g('Molhos', MOL, { d: MOL })] }]
+                    { n: 'Cachorro Quente Tradicional', d: 'Você monta do seu jeito: ingredientes e molhos à sua escolha.', p: 12, from: 1, img: 'hot_simples-removebg-preview.png', lb: 'Mais pedido', g: [g('Ingredientes', ING, { d: ING }), g('Molhos', MOL)] },
+                    { n: 'Hot Dog Especial', d: 'Uma combinação caprichada, com todos os molhos da casa.', p: 15, img: 'hot completo.png', lb: 'Especial KI', g: [g('Ingredientes', ING, { d: ING }), g('Molhos', MOL, { d: MOL })] }]
             },
             {
                 k: 'massas', 
@@ -822,7 +822,7 @@
                     { n: 'Macarrão de Frigideira', 
                     d: 'Talharim, esparguete ou penne. Molho vermelho, branco ou os dois.', 
                     p: 20, 
-                    img: '/Pasta Cremosa na Frigideira Rústica.png', 
+                    img: 'Pasta Cremosa na Frigideira Rústica.png', 
                     g: [g('Massa', ['Talharim', 'Esparguete', 'Penne'], { s: 1 }), g('Molho (até 2)', ['Vermelho', 'Branco'], 
                     { max: 2, d: ['Vermelho'] }), g('Adicionais', ['Bacon', 'Calabresa', 'Presunto', 'Brócolis'])] 
                 }]
