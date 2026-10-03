@@ -63,7 +63,7 @@
             text-transform: uppercase
         }
 
-        /* HERO: a única sequência de entrada orquestrada */
+        /* HERO */
         .hero {
             min-height: 86vh;
             display: grid;
@@ -169,33 +169,6 @@
             border: 1px solid #f5e9d273
         }
 
- 
-
-        .cartb {
-            position: relative;
-            border: 0;
-            background: var(--ye);
-            color: #160d08;
-            font-weight: 800;
-            border-radius: 9px;
-            padding: 10px 14px;
-            font-size: .78rem
-        }
-
-        .cartb b {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--rd);
-            color: var(--cr);
-            min-width: 22px;
-            height: 22px;
-            border-radius: 11px;
-            display: grid;
-            place-items: center;
-            font-size: .72rem
-        }
-
         .bump {
             animation: bump .4s
         }
@@ -206,7 +179,7 @@
             }
         }
 
-        /* SEÇÕES E CARDS */
+        /* SEÇÕES E CARDS 100% IMAGEM */
         main {
             max-width: 1180px;
             margin: auto;
@@ -258,10 +231,13 @@
             gap: 20px
         }
 
+        /* CARD AGORA COM A IMAGEM 100% DE FUNDO */
         .card {
+            position: relative;
+            height: 420px; /* Altura fixa para o card banner */
             display: flex;
             flex-direction: column;
-            background: linear-gradient(150deg, var(--br), #15110e);
+            justify-content: flex-end;
             border: 1px solid #ff78003a;
             border-radius: 18px;
             overflow: hidden;
@@ -285,21 +261,21 @@
             transform: none
         }
 
+        /* A IMAGEM OCUPA TODO O ESPAÇO DE FUNDO DO CARD */
         .ph {
-            height: 175px;
-            position: relative;
-            display: grid;
-            place-items: center;
-            font-size: 4.6rem;
-            background: transparent
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: #1b0f09;
         }
 
         .ph.e {
-            background: radial-gradient(circle, #ff780055, transparent 68%), #1b0f09
-        }
-
-        .ph span {
-            transition: transform .35s
+            background: radial-gradient(circle, #ff780055, transparent 68%), #1b0f09;
+            display: grid;
+            place-items: center;
+            font-size: 4.6rem;
         }
 
         .ph img {
@@ -307,10 +283,11 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform .5s;
         }
 
-        .card:hover .ph span {
-            transform: scale(1.2) rotate(-8deg)
+        .card:hover .ph img {
+            transform: scale(1.08)
         }
 
         .lb {
@@ -324,39 +301,49 @@
             color: #160d08;
             padding: 5px 9px;
             border-radius: 5px;
-            transform: rotate(-4deg)
+            transform: rotate(-4deg);
+            z-index: 3;
         }
 
+        /* CONTEÚDO (TEXTO) SOBREPOSTO NA PARTE INFERIOR COM DEGRADÊ */
         .cb {
-            padding: 18px;
+            position: relative;
+            z-index: 2;
+            padding: 20px 18px 18px;
+            background: linear-gradient(to top, rgba(13, 11, 10, 0.95) 20%, rgba(13, 11, 10, 0.7) 70%, transparent 100%);
             display: flex;
             flex-direction: column;
-            flex: 1;
             gap: 6px
         }
 
         .cb h3 {
             font-size: 1.45rem;
-            line-height: 1.1
+            line-height: 1.1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         .cb p {
-            color: var(--mu);
+            color: #dcd6cd;
             font-size: .84rem;
-            flex: 1
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
         }
 
         .pb {
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
-            margin-top: 12px
+            margin-top: 8px
         }
 
         .pr {
             font-size: 1.8rem;
             color: var(--ye);
-            line-height: 1
+            line-height: 1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         .pr small {
@@ -676,66 +663,49 @@
         }
 
         .cart-float {
-    position: fixed;
-    right: 22px;
-    bottom: 22px;
-    z-index: 100;
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 0;
+            border-radius: 50px;
+            padding: 14px 20px;
+            background: var(--ye);
+            color: #160d08;
+            font-weight: 900;
+            font-size: .85rem;
+            box-shadow: 5px 5px 0 var(--or);
+            cursor: pointer;
+            transition: transform .2s, box-shadow .2s;
+        }
 
-    display: flex;
-    align-items: center;
-    gap: 8px;
+        .cart-float:hover {
+            transform: translateY(-3px);
+            box-shadow: 7px 7px 0 var(--or);
+        }
 
-    border: 0;
-    border-radius: 50px;
+        .cart-float:active {
+            transform: translateY(2px);
+            box-shadow: 2px 2px 0 var(--or);
+        }
 
-    padding: 14px 20px;
-
-    background: var(--ye);
-    color: #160d08;
-
-    font-weight: 900;
-    font-size: .85rem;
-
-    box-shadow: 5px 5px 0 var(--or);
-
-    cursor: pointer;
-
-    transition:
-        transform .2s,
-        box-shadow .2s;
-}
-
-.cart-float:hover {
-    transform: translateY(-3px);
-    box-shadow: 7px 7px 0 var(--or);
-}
-
-.cart-float:active {
-    transform: translateY(2px);
-    box-shadow: 2px 2px 0 var(--or);
-}
-
-.cart-float b {
-    position: absolute;
-
-    top: -7px;
-    right: -7px;
-
-    min-width: 23px;
-    height: 23px;
-
-    padding: 0 5px;
-
-    display: grid;
-    place-items: center;
-
-    border-radius: 50%;
-
-    background: var(--rd);
-    color: var(--cr);
-
-    font-size: .7rem;
-}
+        .cart-float b {
+            position: absolute;
+            top: -7px;
+            right: -7px;
+            min-width: 23px;
+            height: 23px;
+            padding: 0 5px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--rd);
+            color: var(--cr);
+            font-size: .7rem;
+        }
 
         @media(max-width:640px) {
             .hero {
@@ -768,11 +738,10 @@
             <div class="cta"><a class="btn" href="#hotdog">Ver cardápio</a><button class="btn o"
                     onclick="openCart()">Meu pedido</button></div>
         </div>
-        
     </header>
 
     <button class="cart-float" id="cb" onclick="openCart()" aria-label="Abrir pedido">
-    🛒
+        🛒
         <span>Pedido</span>
         <b id="cc">0</b>
     </button>
@@ -816,7 +785,7 @@
     <div class="toast" id="toast" role="status"></div>
 
     <script>
-        const WA = '5564993101018'; // ← troque pelo WhatsApp da Ki Hot Dog (com DDI+DDD)
+        const WA = '5564993101018'; 
         const $ = s => document.querySelector(s), R = v => 'R$ ' + v.toFixed(2).replace('.', ',');
         const g = (t, o, x = {}) => ({ t, o, s: x.s, max: x.max, d: x.d || (x.s ? [o[0]] : []) });
         const ING = ['Cenoura', 'Milho', 'Azeitona', 'Palmito', 'Tomate', 'Alface', 'Batata palha'];
@@ -826,7 +795,7 @@
         const M = [
             {
                 k: 'hotdog', em: '🌭', t: 'Ki |Hot Dog', tag: 'Do seu jeito!', ds: 'O clássico da casa. Tire ou ponha ingredientes e molhos como quiser.', it: [
-                    { n: 'Cachorro Quente Tradicional', d: 'Você monta do seu jeito: ingredientes e molhos à sua escolha.', p: 12, from: 1, img: 'hot_simples-removebg-preview.png', lb: 'Mais pedido', g: [g('Ingredientes', ING, { d: ING }), g('Molhos', MOL)] },
+                    { n: 'Cachorro Quente Tradicional', d: 'Você monta do seu jeito: ingredientes e molhos à sua escolha.', p: 12, from: 1, img: 'Gemini_Generated_Image_s46jmws46jmws46j.jpeg', lb: 'Mais pedido', g: [g('Ingredientes', ING, { d: ING }), g('Molhos', MOL)] },
                     { n: 'Hot Dog Especial', d: 'Uma combinação caprichada, com todos os molhos da casa.', p: 15, img: 'hot completo.png', lb: 'Especial KI', g: [g('Ingredientes', ING, { d: ING }), g('Molhos', MOL, { d: MOL })] }]
             },
             {
@@ -853,6 +822,7 @@
                     { n: 'Pastel Tradicional', 
                     d: 'Escolha o recheio.', 
                     p: 10, 
+                    img: 'Pastéis Dourados com Recheio Cremoso.png',
                     from: 1, 
                     g: [g('Recheio', ['Carne', 'Frango', 'Queijo'], 
                     { s: 1 })] 
@@ -860,6 +830,7 @@
                     { n: 'Ki Moda da Casa', 
                     d: 'O pastel completo. Tire o que não quiser.', 
                     p: 20, 
+                    img: 'Pastel Crocante Recheado em Explosão de Sabores.png',
                     lb: 'Da casa', 
                     g: [g('Recheio', ['Carne', 'Queijo', 'Milho', 'Azeitona', 'Palmito', 'Presunto', 'Tomate', 'Bacon', 'Calabresa'], 
                     { d: ['Carne', 'Queijo', 'Milho', 'Azeitona', 'Palmito', 'Presunto', 'Tomate', 'Bacon', 'Calabresa'] })] 
@@ -867,20 +838,21 @@
             },
             {
                 k: 'acai', em: '🍇', t: '|Açaí', tag: 'Energia e sabor!', ds: 'Acompanha Leite Ninho + 2 adicionais à sua escolha.', it: [
-                    { n: 'Açaí 300ml', d: 'Leite Ninho + 2 adicionais.', p: 12, g: ACAI }, { n: 'Açaí 500ml', d: 'Leite Ninho + 2 adicionais.', p: 15, g: ACAI }]
+                    { n: 'Açaí 300ml', d: 'Leite Ninho + 2 adicionais.', p: 12, img: 'acai ki.png', g: ACAI }, { n: 'Açaí 500ml', d: 'Leite Ninho + 2 adicionais.', p: 15, img: 'acai ki.png', g: ACAI }]
             },
             {
                 k: 'cremes', em: '🍓', t: '|Cremes', tag: 'Docinho para fechar!', ds: 'Copo de 500ml. Escolha a calda.', it: [
-                    { n: 'Creme de Morango', d: '500ml com calda à sua escolha.', p: 15, g: CALDA }, { n: 'Creme de Maracujá', d: '500ml com calda à sua escolha.', p: 15, g: CALDA }]
+                    { n: 'Creme de Morango', d: '500ml com calda à sua escolha.', p: 15, img: 'Creme de Morango.png',g: CALDA }, 
+                    { n: 'Creme de Maracujá', d: '500ml com calda à sua escolha.', p: 15, img: 'Creme Maracuja.png',g: CALDA }]
             },
             {
                 k: 'porcoes', em: '🍟', t: 'Batatas |KI', tag: 'Crocante e irresistível!', ds: 'Porções de 240g.', it: [
-                    { n: 'Batata Simples', d: 'Acompanha molho rosé.', p: 20, g: [] },
-                    { n: 'Batata Completa', d: 'Com a cobertura que você escolher.', p: 25, g: [g('Cobertura', ['Catupiry', 'Cheddar', 'Bacon', 'Calabresa'], { s: 1 })] }]
+                    { n: 'Batata Simples', d: 'Acompanha molho rosé.', p: 20, img: 'batata simples.png',g: [] },
+                    { n: 'Batata Completa', d: 'Com a cobertura que você escolher.', p: 25, img:'batata completa.png',g: [g('Cobertura', ['Catupiry', 'Cheddar', 'Bacon', 'Calabresa'], { s: 1 })] }]
             },
             {
                 k: 'bebidas', em: '🥤', t: '|Bebidas', tag: 'Refrescância na medida!', ds: '', it: [
-                    { n: 'Milk Shake 500ml', d: 'Escolha o sabor.', p: 15, g: [g('Sabor', ['Ovomaltine', 'Nutella', 'M&M', 'Chocolate'], { s: 1 })] }]
+                    { n: 'Milk Shake 500ml', d: 'Escolha o sabor.', p: 15, img:'Milk Shake.png',g: [g('Sabor', ['Ovomaltine', 'Nutella', 'M&M', 'Chocolate'], { s: 1 })] }]
             }
         ];
         const A = []; M.forEach(c => c.it.forEach(i => { i.c = c; i.id = A.push(i) - 1 }));
@@ -892,8 +864,8 @@
                             ? `<img src="${i.img}" alt="${i.n}">`
                             : `<span>${i.c.em}</span>`
                     }
-                    ${i.lb ? `<i class="lb">${i.lb}</i>` : ''}
                 </div>
+                ${i.lb ? `<i class="lb">${i.lb}</i>` : ''}
 
                 <div class="cb">
                     <h3>${i.n}</h3>
@@ -914,12 +886,9 @@
         `;
         $('#menu').innerHTML = M.map(c => { const [a, b] = c.t.split('|'); return `<section class="sec" id="${c.k}"><span class="eb">${c.tag}</span><h2>${a}<b>${b}</b></h2><p class="sd">${c.ds}</p><div class="grid">${c.it.map(card).join('')}</div></section>` }).join('');
         
-        // animações de scroll
         const rv = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('v'), (e.target.dataset.d || 0) * 90); rv.unobserve(e.target) } }), { threshold: .1 });
         document.querySelectorAll('.rv').forEach((el, n) => { el.dataset.d = n % 3; rv.observe(el) });
         
-
-        // montar item
         let cur, sel, qty, C = [];
         function openItem(id) {
             cur = A[id]; sel = cur.g.map(x => new Set(x.d)); qty = 1; $('#obs').value = ''; $('#mt').textContent = cur.n; $('#md').textContent = cur.d;
@@ -939,7 +908,6 @@
             const b = $('#cb'); b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump')
         }
 
-        // carrinho
         const tot = () => C.reduce((s, i) => s + i.p * i.q, 0);
         function draw() {
             $('#cc').textContent = C.reduce((s, i) => s + i.q, 0); $('#ct').textContent = R(tot());
@@ -947,14 +915,50 @@
         }
         function cq(k, n) { C[k].q += n; if (C[k].q < 1) C.splice(k, 1); draw() }
         function openCart() { draw(); show('#drawer') }
-        function send() {
-            if (!C.length) { toast('Adicione um item antes de enviar'); return }
-            let t = '*PEDIDO KI HOT DOG*\n' + ($('#nm').value.trim() ? 'Cliente: ' + $('#nm').value.trim() + '\n' : '') + '\n';
-            C.forEach((i, k) => { t += `${k + 1}. ${i.n} x${i.q} — ${R(i.p * i.q)}\n` + (i.o.length ? '   ' + i.o.join(' | ') + '\n' : '') + (i.obs ? '   Obs: ' + i.obs + '\n' : '') });
-            t += '\n*TOTAL: ' + R(tot()) + '*'; window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(t), '_blank')
-        }
+function send() {
+    if (!C.length) { 
+        toast('Adicione um item antes de enviar'); 
+        return; 
+    }
 
-        // util
+    const nomeCliente = $('#nm').value.trim();
+    
+    // Usando representações seguras e emojis diretos validados
+    let t = '🌭 *NOVO PEDIDO - KI HOT DOG* 🌭\n';
+    t += '----------------------------------\n';
+    
+    if (nomeCliente) {
+        t += `👤 *Cliente:* ${nomeCliente}\n`;
+    }
+    
+    // Trocando os ícones que falham por equivalentes seguros ou removendo-os dos blocos de texto problemáticos
+    t += `🕒 *Horário do Pedido:* ${new Date().toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}\n`;
+    t += '----------------------------------\n\n';
+    
+    t += '*ITENS DO PEDIDO:*\n';
+
+    C.forEach((i, k) => {
+        t += `\n*${k + 1}. ${i.n}* (x${i.q})\n`;
+        t += `   • Subtotal: *${R(i.p * i.q)}*\n`;
+        
+        if (i.o.length) {
+            t += `   • *Opções:* ${i.o.join(' | ')}\n`;
+        }
+        
+        if (i.obs) {
+            t += `   • *Obs:* ${i.obs}\n`;
+        }
+    });
+
+    t += '\n----------------------------------\n';
+    t += `💵 *TOTAL GERAL: ${R(tot())}*\n`;
+    t += '----------------------------------\n';
+    t += '_Aguardando confirmação do pedido!_';
+
+    // Dispara a URL codificada com segurança para o WhatsApp
+    window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(t), '_blank');
+}
+
         function show(s) { $(s).classList.add('open'); document.body.style.overflow = 'hidden' }
         function closeAll() { document.querySelectorAll('.ov').forEach(o => o.classList.remove('open')); document.body.style.overflow = '' }
         document.querySelectorAll('.ov').forEach(o => o.addEventListener('click', e => { if (e.target === o) closeAll() }));
